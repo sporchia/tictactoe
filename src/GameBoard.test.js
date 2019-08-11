@@ -4,6 +4,7 @@ import GameBoard from "./GameBoard";
 import Square from "./Square";
 import { configure, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+import each from "jest-each";
 
 configure({ adapter: new Adapter() });
 
@@ -18,3 +19,22 @@ it("renders without crashing", () => {
 it("should contain 9 squares", () => {
   expect(wrapper.find(Square)).toHaveLength(9);
 });
+
+each([
+  [null, null, null, null, null, null, null, null, null, null],
+  ["X", "X", "X", "X", null, null, null, null, null, null],
+  ["X", null, null, null, "X", "X", "X", null, null, null],
+  ["X", null, null, null, null, null, null, "X", "X", "X"],
+  ["X", "X", null, null, "X", null, null, "X", null, null],
+  ["X", null, "X", null, null, "X", null, null, "X", null],
+  ["X", null, null, "X", null, null, "X", null, null, "X"],
+  ["X", null, null, "X", null, "X", null, "X", null, null],
+  ["X", "X", null, null, null, "X", null, null, null, "X"]
+]).it(
+  "winner returns %s when board is in state [%s, %s, %s, %s, %s, %s, %s, %s, %s]",
+  (expected, s0, s1, s2, s3, s4, s5, s6, s7, s8) => {
+    wrapper.setState({ squares: [s0, s1, s2, s3, s4, s5, s6, s7, s8] });
+
+    expect(wrapper.instance().winner()).toBe(expected);
+  }
+);
