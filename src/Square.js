@@ -6,8 +6,14 @@ class Square extends React.Component {
   };
 
   render() {
-    const { owner } = this.props;
-    return <div className={`Square owner-${owner}`} owner={owner} />;
+    const { owner, selected } = this.props;
+    return (
+      <div
+        className={`Square owner-${owner}`}
+        owner={owner}
+        onClick={selected}
+      />
+    );
   }
 }
 
