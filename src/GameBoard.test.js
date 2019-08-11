@@ -38,3 +38,9 @@ each([
     expect(wrapper.instance().winner()).toBe(expected);
   }
 );
+
+it("winner returns catsgame when there is no winner and all squares are filled", () => {
+  wrapper.setState({ squares: ["X", "O", "X", "O", "O", "X", "X", "X", "O"] });
+
+  expect(wrapper.instance().winner()).toBe("catsgame");
+});
