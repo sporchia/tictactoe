@@ -18,3 +18,7 @@ it("renders without crashing", () => {
 it("has a game board", () => {
   expect(wrapper.find(Board)).toHaveLength(1);
 });
+
+it("player X should go first", () => {
+  expect(wrapper.state().currentPlayer).toBe("X");
+});
