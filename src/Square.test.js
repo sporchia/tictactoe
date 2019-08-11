@@ -17,3 +17,10 @@ it("renders without crashing", () => {
 it("starts with no owner", () => {
   expect(wrapper.prop("owner")).toBe(null);
 });
+
+it("notifies parent if it was selected", () => {
+  const selectedCallback = jest.fn();
+  const wrapper = shallow(<Square selected={selectedCallback} />);
+  wrapper.simulate("click");
+  expect(selectedCallback.mock.calls.length).toBe(1);
+});
