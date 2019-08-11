@@ -52,17 +52,19 @@ class GameBoard extends React.Component {
   }
 
   render() {
+    const { squares } = this.state;
+
     return (
       <div className="GameBoard">
-        <Square className="Square" />
-        <Square className="Square" />
-        <Square className="Square" />
-        <Square className="Square" />
-        <Square className="Square" />
-        <Square className="Square" />
-        <Square className="Square" />
-        <Square className="Square" />
-        <Square className="Square" />
+        <Square className="Square" owner={squares[0]} />
+        <Square className="Square" owner={squares[1]} />
+        <Square className="Square" owner={squares[2]} />
+        <Square className="Square" owner={squares[3]} />
+        <Square className="Square" owner={squares[4]} />
+        <Square className="Square" owner={squares[5]} />
+        <Square className="Square" owner={squares[6]} />
+        <Square className="Square" owner={squares[7]} />
+        <Square className="Square" owner={squares[8]} />
       </div>
     );
   }
