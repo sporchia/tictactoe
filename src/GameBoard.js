@@ -1,7 +1,22 @@
 import React from "react";
+import Square from "./Square";
 
-function GameBoard() {
-  return <div className="GameBoard" />;
+class GameBoard extends React.Component {
+  render() {
+    return (
+      <div className="GameBoard">
+        <Square className="Square" />
+        <Square className="Square" />
+        <Square className="Square" />
+        <Square className="Square" />
+        <Square className="Square" />
+        <Square className="Square" />
+        <Square className="Square" />
+        <Square className="Square" />
+        <Square className="Square" />
+      </div>
+    );
+  }
 }
 
 export default GameBoard;

@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.GameBoard {
+  border: 1px solid black;
+  margin: 0 auto;
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.Square {
+  border: 1px solid gray;
+}
