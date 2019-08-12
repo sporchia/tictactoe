@@ -13,11 +13,16 @@ class App extends React.Component {
   }
 
   render() {
+    const { currentPlayer } = this.state;
     return (
       <div className="App">
+        <h1 className="header">Welcome to Tic-Tac-Toe!</h1>
+        <div className="subheader">
+          It is currently {currentPlayer}’s turn...
+        </div>
         <GameBoard
           play={() => this.changePlayer()}
-          currentPlayer={this.state.currentPlayer}
+          currentPlayer={currentPlayer}
         />
       </div>
     );
