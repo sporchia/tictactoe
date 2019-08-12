@@ -44,3 +44,10 @@ it("winner returns catsgame when there is no winner and all squares are filled",
 
   expect(wrapper.instance().winner()).toBe("catsgame");
 });
+
+it("should notify parent when player has made a valid selection", () => {
+  const playCallback = jest.fn();
+  const wrapper = shallow(<GameBoard play={playCallback} />);
+  wrapper.instance().select(0);
+  expect(playCallback.mock.calls.length).toBe(1);
+});
