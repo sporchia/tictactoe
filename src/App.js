@@ -44,6 +44,7 @@ class App extends React.Component {
           play={() => this.changePlayer()}
           currentPlayer={currentPlayer}
           key={gameKey}
+          setWinner={winner => this.setWinner(winner)}
         />
         <button className="reset" onClick={() => this.reset()}>
           Reset
