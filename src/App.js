@@ -27,6 +27,10 @@ class App extends React.Component {
     });
   }
 
+  undo() {
+    this.changePlayer();
+  }
+
   render() {
     const { currentPlayer, gameKey, winner } = this.state;
     return (
