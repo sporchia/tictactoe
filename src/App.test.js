@@ -22,3 +22,8 @@ it("has a game board", () => {
 it("player X should go first", () => {
   expect(wrapper.state().currentPlayer).toBe("X");
 });
+
+it("changes player when changePlayer is called", () => {
+  wrapper.instance().changePlayer();
+  expect(wrapper.state().currentPlayer).toBe("O");
+});
