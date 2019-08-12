@@ -74,18 +74,12 @@ it("should change the player if the last move was undone", () => {
 
 it("should undo winner if undo happens", () => {
   const wrapper = mount(<App />);
-  wrapper
-    .find(Board)
-    .instance()
-    .select(0);
-  wrapper
-    .find(Board)
-    .instance()
-    .select(1);
-  wrapper
-    .find(Board)
-    .instance()
-    .select(2);
+  const board = wrapper.find(Board).instance();
+  board.select(0);
+  board.select(3);
+  board.select(1);
+  board.select(4);
+  board.select(2);
   wrapper.instance().undo();
   expect(wrapper.text()).not.toMatch(/X is the winner!/);
 });
@@ -98,4 +92,16 @@ it("should call game board undo when undo is called", () => {
     .select(0);
   wrapper.instance().undo();
   expect(wrapper.find(Board).state().squares[0]).toBe(null);
+});
+
+it("should undo when undo button is clicked", () => {
+  const wrapper = mount(<App />);
+  const board = wrapper.find(Board).instance();
+  board.select(0);
+  board.select(3);
+  board.select(1);
+  board.select(4);
+  board.select(2);
+  wrapper.find(".undo").simulate("click");
+  expect(wrapper.state().winner).not.toBe("X");
 });
