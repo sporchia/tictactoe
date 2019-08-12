@@ -12,6 +12,12 @@ class App extends React.Component {
     });
   }
 
+  reset() {
+    this.setState({
+      currentPlayer: "X"
+    });
+  }
+
   render() {
     const { currentPlayer } = this.state;
     return (
