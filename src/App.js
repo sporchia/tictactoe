@@ -63,6 +63,9 @@ class App extends React.Component {
         <button className="reset" onClick={() => this.reset()}>
           Reset
         </button>
+        <button className="undo" onClick={() => this.undo()}>
+          Undo
+        </button>
       </div>
     );
   }
