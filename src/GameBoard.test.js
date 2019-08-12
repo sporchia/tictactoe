@@ -51,3 +51,9 @@ it("should notify parent when player has made a valid selection", () => {
   wrapper.instance().select(0);
   expect(playCallback.mock.calls.length).toBe(1);
 });
+
+it("should update state when player has made a valid selection", () => {
+  const wrapper = shallow(<GameBoard currentPlayer="O" />);
+  wrapper.instance().select(0);
+  expect(wrapper.state().squares[0]).toBe("O");
+});
