@@ -35,6 +35,9 @@ class App extends React.Component {
           currentPlayer={currentPlayer}
           key={gameKey}
         />
+        <button className="reset" onClick={() => this.reset()}>
+          Reset
+        </button>
       </div>
     );
   }
