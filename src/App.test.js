@@ -68,3 +68,10 @@ it("should change the player if the last move was undone", () => {
   wrapper.instance().undo();
   expect(wrapper.state().currentPlayer).toBe("X");
 });
+
+it("should undo winner if undo happens", () => {
+  const wrapper = shallow(<App />);
+  wrapper.instance().setWinner("X");
+  wrapper.instance().undo();
+  expect(wrapper.text()).not.toMatch(/X is the winner!/);
+});
