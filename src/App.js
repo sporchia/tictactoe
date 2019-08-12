@@ -29,6 +29,7 @@ class App extends React.Component {
 
   undo() {
     this.changePlayer();
+    this.setWinner(null);
   }
 
   render() {
