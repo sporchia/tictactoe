@@ -61,3 +61,10 @@ it("should show the winner when a winner is selected", () => {
   wrapper.instance().setWinner("X");
   expect(wrapper.text()).toMatch(/X is the winner!/);
 });
+
+it("should change the player if the last move was undone", () => {
+  const wrapper = shallow(<App />);
+  wrapper.instance().changePlayer();
+  wrapper.instance().undo();
+  expect(wrapper.state().currentPlayer).toBe("X");
+});
