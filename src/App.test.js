@@ -75,3 +75,13 @@ it("should undo winner if undo happens", () => {
   wrapper.instance().undo();
   expect(wrapper.text()).not.toMatch(/X is the winner!/);
 });
+
+it("should call game board undo when undo is called", () => {
+  const wrapper = mount(<App />);
+  wrapper
+    .find(Board)
+    .instance()
+    .select(0);
+  wrapper.instance().undo();
+  expect(wrapper.find(Board).state().squares[0]).toBe(null);
+});
