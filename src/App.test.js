@@ -48,3 +48,10 @@ it("should reset the gameboard on reset", () => {
   wrapper.instance().reset();
   expect(wrapper.state().gameKey).not.toBe(currentKey);
 });
+
+it("should reset when reset button is clicked", () => {
+  const wrapper = shallow(<App />);
+  const currentKey = wrapper.state().gameKey;
+  wrapper.find(".reset").simulate("click");
+  expect(wrapper.state().gameKey).not.toBe(currentKey);
+});
