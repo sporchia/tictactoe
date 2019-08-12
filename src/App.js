@@ -3,7 +3,8 @@ import GameBoard from "./GameBoard";
 
 class App extends React.Component {
   state = {
-    currentPlayer: "X"
+    currentPlayer: "X",
+    gameKey: 0
   };
 
   changePlayer() {
@@ -13,13 +14,16 @@ class App extends React.Component {
   }
 
   reset() {
-    this.setState({
-      currentPlayer: "X"
+    this.setState(state => {
+      return {
+        currentPlayer: "X",
+        gameKey: state.gameKey + 1
+      };
     });
   }
 
   render() {
-    const { currentPlayer } = this.state;
+    const { currentPlayer, gameKey } = this.state;
     return (
       <div className="App">
         <h1 className="header">Welcome to Tic-Tac-Toe!</h1>
@@ -29,6 +33,7 @@ class App extends React.Component {
         <GameBoard
           play={() => this.changePlayer()}
           currentPlayer={currentPlayer}
+          key={gameKey}
         />
       </div>
     );
