@@ -8,7 +8,8 @@ class GameBoard extends React.Component {
   };
 
   state = {
-    squares: Array(9).fill(null)
+    squares: Array(9).fill(null),
+    history: [Array(9).fill(null)]
   };
 
   winner(s = this.state.squares) {
@@ -62,7 +63,7 @@ class GameBoard extends React.Component {
 
   select(id) {
     const { currentPlayer, play } = this.props;
-    const { squares } = this.state;
+    const { squares, history } = this.state;
 
     if (this.state.squares[id] !== null || this.winner()) {
       return;
@@ -70,16 +71,31 @@ class GameBoard extends React.Component {
 
     play.call();
 
+    const newSquaresArray = Object.values({
+      ...squares,
+      [id]: currentPlayer
+    });
+
     const newSquares = {
-      squares: Object.values({
-        ...squares,
-        [id]: currentPlayer
-      })
+      squares: newSquaresArray,
+      history: [newSquaresArray].concat(history)
     };
 
     this.winner(newSquares.squares);
 
     this.setState(newSquares);
+  }
+
+  undo() {
+    let { history } = this.state;
+    if (history.length <= 1) {
+      return;
+    }
+
+    this.setState({
+      squares: history[1],
+      history: history.slice(1)
+    });
   }
 
   createSquares() {
