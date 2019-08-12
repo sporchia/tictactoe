@@ -8,6 +8,11 @@ class App extends React.Component {
     winner: null
   };
 
+  constructor(props) {
+    super(props);
+    this.gameBoard = React.createRef();
+  }
+
   changePlayer() {
     this.setState(state => {
       return { currentPlayer: state.currentPlayer === "X" ? "O" : "X" };
@@ -28,6 +33,9 @@ class App extends React.Component {
   }
 
   undo() {
+    if (this.gameBoard.current.undo() === false) {
+      return;
+    }
     this.changePlayer();
     this.setWinner(null);
   }
@@ -50,6 +58,7 @@ class App extends React.Component {
           currentPlayer={currentPlayer}
           key={gameKey}
           setWinner={winner => this.setWinner(winner)}
+          ref={this.gameBoard}
         />
         <button className="reset" onClick={() => this.reset()}>
           Reset

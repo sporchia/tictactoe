@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import Board from "./GameBoard";
-import { configure, shallow } from "enzyme";
+import { configure, shallow, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 configure({ adapter: new Adapter() });
@@ -63,15 +63,29 @@ it("should show the winner when a winner is selected", () => {
 });
 
 it("should change the player if the last move was undone", () => {
-  const wrapper = shallow(<App />);
-  wrapper.instance().changePlayer();
+  const wrapper = mount(<App />);
+  wrapper
+    .find(Board)
+    .instance()
+    .select(0);
   wrapper.instance().undo();
   expect(wrapper.state().currentPlayer).toBe("X");
 });
 
 it("should undo winner if undo happens", () => {
-  const wrapper = shallow(<App />);
-  wrapper.instance().setWinner("X");
+  const wrapper = mount(<App />);
+  wrapper
+    .find(Board)
+    .instance()
+    .select(0);
+  wrapper
+    .find(Board)
+    .instance()
+    .select(1);
+  wrapper
+    .find(Board)
+    .instance()
+    .select(2);
   wrapper.instance().undo();
   expect(wrapper.text()).not.toMatch(/X is the winner!/);
 });

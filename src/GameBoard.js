@@ -89,7 +89,7 @@ class GameBoard extends React.Component {
   undo() {
     let { history } = this.state;
     if (history.length <= 1) {
-      return;
+      return false;
     }
 
     this.setState({
