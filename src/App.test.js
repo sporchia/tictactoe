@@ -40,3 +40,11 @@ it("should set the starting player back to X on reset", () => {
   wrapper.instance().reset();
   expect(wrapper.state().currentPlayer).toBe("X");
 });
+
+it("should reset the gameboard on reset", () => {
+  const wrapper = shallow(<App />);
+  const currentKey = wrapper.state().gameKey;
+
+  wrapper.instance().reset();
+  expect(wrapper.state().gameKey).not.toBe(currentKey);
+});
