@@ -2,6 +2,10 @@ import React from "react";
 import Square from "./Square";
 
 class GameBoard extends React.Component {
+  static defaultProps = {
+    play: () => {}
+  };
+
   state = {
     squares: Array(9).fill(null)
   };
@@ -52,11 +56,22 @@ class GameBoard extends React.Component {
   }
 
   select(id) {
+    const { currentPlayer, play } = this.props;
+
     if (this.state.squares[id] !== null) {
       return;
     }
 
-    this.props.play();
+    play.call();
+
+    this.setState(state => {
+      return {
+        squares: Object.values({
+          ...state.squares,
+          [id]: currentPlayer
+        })
+      };
+    });
   }
 
   createSquares() {
