@@ -6,10 +6,19 @@ class App extends React.Component {
     currentPlayer: "X"
   };
 
+  changePlayer() {
+    this.setState(state => {
+      return { currentPlayer: state.currentPlayer === "X" ? "O" : "X" };
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <GameBoard />
+        <GameBoard
+          play={() => this.changePlayer()}
+          currentPlayer={this.state.currentPlayer}
+        />
       </div>
     );
   }
