@@ -57,3 +57,12 @@ it("should update state when player has made a valid selection", () => {
   wrapper.instance().select(0);
   expect(wrapper.state().squares[0]).toBe("O");
 });
+
+it("should notify parent when player has won", () => {
+  const winnerCallback = jest.fn();
+  const wrapper = shallow(<GameBoard setWinner={winnerCallback} />);
+  wrapper.instance().select(0);
+  wrapper.instance().select(1);
+  wrapper.instance().select(2);
+  expect(winnerCallback.mock.calls.length).toBe(1);
+});
