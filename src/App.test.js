@@ -55,3 +55,9 @@ it("should reset when reset button is clicked", () => {
   wrapper.find(".reset").simulate("click");
   expect(wrapper.state().gameKey).not.toBe(currentKey);
 });
+
+it("should show the winner when a winner is selected", () => {
+  const wrapper = shallow(<App />);
+  wrapper.instance().setWinner("X");
+  expect(wrapper.text()).toMatch(/X is the winner!/);
+});
