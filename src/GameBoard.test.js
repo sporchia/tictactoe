@@ -66,3 +66,22 @@ it("should notify parent when player has won", () => {
   wrapper.instance().select(2);
   expect(winnerCallback.mock.calls.length).toBe(1);
 });
+
+it("should undo the last move when undo is called", () => {
+  const wrapper = shallow(<GameBoard currentPlayer="X" />);
+  wrapper.instance().select(0);
+  wrapper.instance().select(1);
+  wrapper.instance().select(2);
+  wrapper.instance().undo();
+  expect(wrapper.state().squares).toEqual([
+    "X",
+    "X",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ]);
+});
