@@ -27,3 +27,8 @@ it("changes player when changePlayer is called", () => {
   wrapper.instance().changePlayer();
   expect(wrapper.state().currentPlayer).toBe("O");
 });
+
+it("should let the players know who’s turn it is", () => {
+  const wrapper = shallow(<App />);
+  expect(wrapper.text()).toMatch(/It is currently X’s turn/);
+});
